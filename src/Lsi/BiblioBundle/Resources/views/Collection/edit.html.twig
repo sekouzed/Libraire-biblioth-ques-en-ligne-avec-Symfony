@@ -1,0 +1,17 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Edition de la collection
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Collection</a>
+{% endblock %} 
+
+{% block column_w610 %}
+	<div class="header_01">Edition de la collection</div> 
+
+    {{ form(edit_form) }}
+ {{ form(delete_form) }}
+ 
+{% endblock %}

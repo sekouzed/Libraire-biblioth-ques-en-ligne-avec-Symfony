@@ -1,0 +1,53 @@
+lien_user:
+    pattern:  /
+    defaults: { _controller: "LsiBiblioBundle:User:index" }
+
+lien_user_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LsiBiblioBundle:User:show" }
+
+lien_user_new:
+    pattern:  /new
+    defaults: { _controller: "LsiBiblioBundle:User:new" }
+
+lien_user_create:
+    pattern:  /create
+    defaults: { _controller: "LsiBiblioBundle:User:create" }
+    requirements: { _method: post }
+
+lien_user_modif:
+    pattern:  /modif
+    defaults: { _controller: "LsiBiblioBundle:User:modif" }
+    requirements: { _method: post }
+
+lien_user_edit:
+    pattern:  edit/{id}/
+    defaults: { _controller: "LsiBiblioBundle:User:edit" }
+
+lien_user_edit_admin:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LsiBiblioBundle:User:editAdmin" }
+
+lien_user_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LsiBiblioBundle:User:update" }
+    requirements: { _method: post|put }
+
+lien_user_update_admin:
+    pattern:  /{id}/update
+    defaults: { _controller: "LsiBiblioBundle:User:updateAdmin" }
+    requirements: { _method: post|put }
+
+lien_user_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LsiBiblioBundle:User:delete" }
+    requirements: { _method: post|delete }
+
+lien_user_login:
+    pattern:  /login
+    defaults: { _controller: "LsiBiblioBundle:User:login" }
+    requirements: { _method: post }
+    
+lien_user_logout:
+    pattern:  /logout
+    defaults: { _controller: "LsiBiblioBundle:User:logout" } 

@@ -1,0 +1,22 @@
+/*
+Template Name: Touch of Purple
+File: Featured Slider CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+#waterwheelCarousel{
+	display: block;
+	top: -30px;
+	width: 600px;
+	height: 260px;
+	margin: 0 auto;  
+	}
+
+#waterwheelCarousel > img{
+	display:none;
+	cursor:pointer;
+	box-shadow: 0 0 30px #000000;
+	border: 1px solid black;
+	}

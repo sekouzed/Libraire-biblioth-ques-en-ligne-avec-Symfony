@@ -1,0 +1,4 @@
+lsi_biblio:
+    resource: "@LsiBiblioBundle/Resources/config/routing.yml"
+    prefix:   /
+

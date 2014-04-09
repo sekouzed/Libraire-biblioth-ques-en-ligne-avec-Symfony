@@ -1,0 +1,16 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Nouvel abonnement
+{% endblock %}
+ 
+{% block menu_abonnee %} 
+    <a href="{{ path('lien_user_new') }}" class="current">S'abonnez</a>
+{% endblock %} 
+
+{% block column_w610 -%} 
+	<div class="header_01">Nouvel abonnement</div>    
+
+    {{ form(form) }}
+ 
+{% endblock %}

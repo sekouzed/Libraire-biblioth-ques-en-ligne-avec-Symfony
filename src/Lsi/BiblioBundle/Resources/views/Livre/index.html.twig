@@ -1,0 +1,125 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/lsibiblio/css/featured_slide.css') }}" type="text/css"media="all" /> 
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('bundles/lsibiblio/js/jquery-1.4.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/lsibiblio/js/jquery.waterwheelCarousel.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/lsibiblio/js/jquery.waterwheelCarousel.setup.js') }}"></script>
+{% endblock %}
+
+{% block menu_accueil %}
+	<a href="{{ path('lien_livre') }}" class="current">Accueil</a>
+{% endblock %} 
+
+{% block recent_projects %}  
+	<div class="project_slideshow"> 
+		<script>
+			$(document).ready(function () {
+			  $("#waterwheelCarousel").waterwheelCarousel("horizontal",{ 
+				  startingItem: 6
+			  });
+			});
+		</script>
+		<div id="waterwheelCarousel">
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (1).jpg') }}" alt="" width="180" height="200"/>
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (2).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (3).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (4).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (5).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (6).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (7).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (8).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (9).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (10).jpg') }}" alt="" width="180" height="200" />
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/a (11).jpg') }}" alt="" width="180" height="200" />
+		</div>  
+   </div>  
+	<div class="project_content"> 
+		<div class="header_03">Trouver un livre</div> 
+            <form class="formulaire" action="{{ path('lien_livre_find') }}" method="post"> 
+				<label>Quel livre vous cherchez?</label>
+				<input type="text" name="titre_find" placeholder="nom du livre" value=""/>  
+				<label>Auteur</label> 
+				<input type="text" name="auteur_find" placeholder="nom de l'auteur" value=""/>
+				<label>Cherchez dans</label>
+				<select name="collection_find">
+				    <option value="">Toutes les collections</option>
+	               {% for col in collections %}
+				        <option value="{{ col.id }}">{{ col.nom }}</option>
+	               {% endfor %}
+				</select>
+				<input type="submit" value="Chercher" class="button_01 float_r"/> 
+			</form> 
+	</div>
+	
+{% endblock %} 
+
+{% block column_w610 %} 
+	{% for category in collections %}
+	  <div class="vitrine">
+			<div class="titre">{{ category.nom }}   
+				<a href="{{ path('lien_collection_show', {'id': category.id,'slug': category.getSlug }) }}">
+				{% if category.morelivres %} 
+						( {{ category.morelivres }} livres )
+				{% endif %}</a> 
+			</div>
+		{% for entity in category.activelivres %}
+			<a href="{{ path('lien_livre_show', { 'id': entity.id, 'collection': entity.getCollectionSlug, 'auteur': entity.getAuteurSlug, 'titre': entity.getTitreSlug }) }}">
+				<img src="{{ asset('bundles/lsibiblio/images/thumbnails/' ~ entity.couverture) }}" alt="{{ entity.titre }}" title="{{ entity.titre }} : {{ entity.resume }}"/> 
+			</a>
+		{% endfor %}
+		</div>    
+	{% endfor %} 
+            				
+{% endblock %} 
+
+
+
+{% block column_w290 %} 
+ 
+	<div class="header_02">les plus recents</div> 
+                                
+    {% for entity in livres_recents %} 
+    	<div class="news_section">
+        	<div class="news_img">
+				<img src="{{ asset('bundles/lsibiblio/images/thumbnails/' ~ entity.couverture) }}" />
+            </div>
+            <div class="news_content">
+            	<div class="header_05">
+                    <a href="{{ path('lien_livre_show', { 'id': entity.id, 'collection': entity.getCollectionSlug, 'auteur': entity.getAuteurSlug, 'titre': entity.getTitreSlug }) }}">
+                        {{ entity.titre }}
+                    </a>
+                </div>
+                <p>{{ entity.resume | striptags | slice(0, 60)}} ...</p>
+                <b>poster le {{ entity.dateAjout | date('d-m-Y') }}</b> 
+            </div> 
+            <div class="cleaner"></div>
+        </div>                                 
+	{% endfor %} 
+                                                                                                                             
+	<div class="header_02">les plus populaires</div>  
+        
+    {% for entity in livres_populaire %} 
+    	<div class="news_section">
+        	<div class="news_img">
+				<img src="{{ asset('bundles/lsibiblio/images/thumbnails/' ~ entity.couverture) }}" />
+            </div>
+            <div class="news_content">
+            	<div class="header_05">
+                    <a href="{{ path('lien_livre_show', { 'id': entity.id, 'collection': entity.getCollectionSlug, 'auteur': entity.getAuteurSlug, 'titre': entity.getTitreSlug }) }}">
+                        {{ entity.titre }}
+                    </a>
+                </div> 
+                <p>{{ entity.resume | striptags | slice(0, 60)}} ...</p>
+                <b>Vue : {{ entity.nombreDeVue }} fois</b>
+            </div> 
+            <div class="cleaner"></div>
+        </div> 
+	{% endfor %}
+  
+	
+{% endblock %}  

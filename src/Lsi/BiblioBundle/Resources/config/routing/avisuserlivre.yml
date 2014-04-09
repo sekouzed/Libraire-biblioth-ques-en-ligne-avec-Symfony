@@ -1,0 +1,30 @@
+lien_avis:
+    pattern:  /
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:index" }
+
+lien_avis_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:show" }
+
+lien_avis_new:
+    pattern:  /new
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:new" }
+
+lien_avis_create:
+    pattern:  /create
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:create" }
+    requirements: { _method: post }
+
+lien_avis_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:edit" }
+
+lien_avis_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:update" }
+    requirements: { _method: post|put }
+
+lien_avis_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LsiBiblioBundle:AvisUserLivre:delete" }
+    requirements: { _method: post|delete }

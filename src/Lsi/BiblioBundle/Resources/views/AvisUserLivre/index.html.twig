@@ -1,0 +1,48 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Les avis des utilisateur
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Avis</a>
+{% endblock %} 
+
+{% block column_w610 %}
+	<div class="header_01">Les avis des utilisateur</div>  
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lecture</th>
+                <th>Note</th>
+                <th>Commentaire</th>
+                <th>Dateajout</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td class="col_titre"><a href="{{ path('lien_avis_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.lecture }}</td>
+                <td>{{ entity.note }}</td>
+                <td>{{ entity.commentaire }}</td>
+                <td>{% if entity.dateAjout %}{{ entity.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li class="col_titre">
+                        <a href="{{ path('lien_avis_show', { 'id': entity.id }) }}">voir</a> 
+                    <li class="col_titre">
+                    <li class="col_titre">
+                        <a href="{{ path('lien_avis_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ 
+    {% endblock %}

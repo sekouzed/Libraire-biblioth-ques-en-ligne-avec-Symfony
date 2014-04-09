@@ -1,0 +1,16 @@
+lsiBiblioBundle_lien_collection:
+    resource: "@LsiBiblioBundle/Resources/config/routing/collection.yml"
+    prefix:   /collection
+lsiBiblioBundle_lien_avis:
+    resource: "@LsiBiblioBundle/Resources/config/routing/avisuserlivre.yml"
+    prefix:   /avis
+lsiBiblioBundle_lien_livre:
+    resource: "@LsiBiblioBundle/Resources/config/routing/livre.yml"
+    prefix:   /livre 
+lsiBiblioBundle_lien_user:
+    resource: "@LsiBiblioBundle/Resources/config/routing/user.yml"
+    prefix:   /user 
+
+lsi_biblio_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: LsiBiblioBundle:Default:index }

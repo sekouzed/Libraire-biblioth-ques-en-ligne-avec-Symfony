@@ -1,0 +1,32 @@
+Lsi\BiblioBundle\Entity\AvisUserLivre: 
+    type: entity
+    table: avis_user_livre
+    repositoryClass: Lsi\BiblioBundle\Repository\AvisUserLivreRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        lecture:
+            type: string(45)
+        note:
+            type: integer(4)
+        commentaire:
+            type: string(200)
+        dateAjout:
+            type: datetime  
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: avis_user_livre
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+        livre:
+            targetEntity: Livre
+            inversedBy: avis_user_livre
+            joinColumn:
+                name: livre_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+         prePersist: [ setDateAjoutValue ]

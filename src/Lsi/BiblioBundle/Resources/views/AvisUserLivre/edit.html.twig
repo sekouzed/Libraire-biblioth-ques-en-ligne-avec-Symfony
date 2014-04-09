@@ -1,0 +1,24 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Avis d'utilisateur
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Avis</a>
+{% endblock %} 
+
+{% block column_w610 %}
+	<div class="header_01">Avis d'utilisateur</div> 
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('lien_avis') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

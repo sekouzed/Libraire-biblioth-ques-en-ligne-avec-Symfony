@@ -1,0 +1,6 @@
+Lsi\BiblioBundle\Entity\Livre:
+    properties: 
+    file:
+        - Image: ~
+    file2:
+        - Image: ~

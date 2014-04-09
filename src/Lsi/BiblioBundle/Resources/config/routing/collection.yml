@@ -1,0 +1,30 @@
+lien_collection:
+    pattern:  /
+    defaults: { _controller: LsiBiblioBundle:Collection:index }
+
+lien_collection_show:
+    pattern:  /{id}/{slug}/{page}
+    defaults: { _controller: LsiBiblioBundle:Collection:show,page:1 }
+
+lien_collection_new:
+    pattern:  /new
+    defaults: { _controller: "LsiBiblioBundle:Collection:new" }
+
+lien_collection_create:
+    pattern:  /create
+    defaults: { _controller: "LsiBiblioBundle:Collection:create" }
+    requirements: { _method: post }
+
+lien_collection_edit:
+    pattern:  edit/{id}/
+    defaults: { _controller: "LsiBiblioBundle:Collection:edit" }
+
+lien_collection_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LsiBiblioBundle:Collection:update" }
+    requirements: { _method: post|put }
+
+lien_collection_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LsiBiblioBundle:Collection:delete" }
+    requirements: { _method: post|delete }

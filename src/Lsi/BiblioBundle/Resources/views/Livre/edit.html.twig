@@ -1,0 +1,18 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Edition du livre
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Edition</a>
+{% endblock %} 
+
+{% block column_w610 -%} 
+	<div class="header_01">Edition du livre</div> 
+
+    {{ form(edit_form) }}
+    
+    {{ form(delete_form) }} 
+
+{% endblock %}

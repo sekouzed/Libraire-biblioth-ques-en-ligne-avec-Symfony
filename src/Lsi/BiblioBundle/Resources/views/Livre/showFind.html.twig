@@ -1,0 +1,34 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Catalogue
+{% endblock %}
+
+
+{% block menu_catalogue %}
+	<a href="{{ path('lien_livre_show_all') }}" class="current">Le catalogue</a>
+{% endblock %} 
+
+{% block recent_projects %}
+	<div class="mode_chercher">
+		<form class="formulaire" action="{{ path('lien_livre_find') }}" method="post"> 
+				<input type="text" name="titre_find" placeholder="nom du livre" value=""/>  
+				<input type="text" name="auteur_find" placeholder="nom de l'auteur" value=""/>
+				<select name="collection_find">
+				    <option value="">Toutes les collections</option>
+	               {% for col in liste_collection %}
+				        <option value="{{ col.id }}">{{ col.nom }}</option>
+	               {% endfor %}
+				</select>  
+				<input type="submit" value="OK" class="button_01"/> 
+			</form> 
+	</div>
+{% endblock %} 
+			
+{% block column_w610 %}
+	<div class="header_01">{{ total_livres }} livres trouves</div>
+	 
+	{% include 'LsiBiblioBundle::list.html.twig' with {'livres': list_livres} %}
+ 
+	 
+{% endblock %}

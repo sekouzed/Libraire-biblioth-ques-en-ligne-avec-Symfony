@@ -1,0 +1,46 @@
+Lsi\BiblioBundle\Entity\Livre: 
+    type: entity
+    table: livre
+    repositoryClass: Lsi\BiblioBundle\Repository\LivreRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        titre:
+            type: string(45) 
+        couverture:
+            type: string(45)
+        resume:
+            type: string(200)
+        support:
+            type: string(200)
+        auteur:
+            type: string(45)
+        edition:
+            type: string(45)
+        dateEdition:
+            type: datetime
+        lienAchat:
+            type: string(45)
+        nombreDeVue:
+            type: integer(4)
+            default: 0
+        enLigne:
+            type: boolean
+            default: false
+        dateAjout:
+            type: datetime
+    manyToOne:
+        Collection:
+            targetEntity: Collection
+            inversedBy: livre
+            joinColumn:
+                name: collection_id
+                referencedColumnName: id
+    oneToMany: 
+        avis_user_livre:
+            targetEntity: AvisUserLivre
+            mappedBy: livre
+    lifecycleCallbacks:
+         prePersist: [ setDateAjoutValue ]

@@ -1,0 +1,15 @@
+Lsi\BiblioBundle\Entity\Collection: 
+    type: entity
+    table: collection
+    repositoryClass: Lsi\BiblioBundle\Repository\CollectionRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string(200) 
+    oneToMany:
+        livre:
+            targetEntity: Livre 
+            mappedBy: Collection

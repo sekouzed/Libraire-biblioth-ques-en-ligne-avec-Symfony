@@ -1,0 +1,21 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Edition du livre
+{% endblock %}
+
+{% block templatemo_menu %}
+	<ul>
+		<li><a href="{{ path('lien_livre') }}">Accueil</a></li>
+		<li><a href="{{ path('lien_livre_show_all') }}">Le catalogue</a></li> 
+		<li><a href="">S'abonnez</a></li>
+		<li><a href="" class="current last">Edition</a></li> 
+	</ul>    	
+{% endblock %} 
+
+{% block column_w610 -%} 
+	<div class="header_01">Nouveau du livre</div> 
+
+    {{ form(form) }}
+
+{% endblock %}

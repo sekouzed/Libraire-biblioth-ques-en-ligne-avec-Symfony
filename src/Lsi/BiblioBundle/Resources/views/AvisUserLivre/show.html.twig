@@ -1,0 +1,52 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Avis d'utilisateur
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Avis</a>
+{% endblock %} 
+
+{% block column_w610 %}
+	<div class="header_01">Avis d'utilisateur</div> 
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Lecture</th>
+                <td>{{ entity.lecture }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ entity.note }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ entity.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Dateajout</th>
+                <td>{{ entity.dateAjout|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li class="col_titre">
+        <a href="{{ path('lien_avis') }}">
+            Retour a la liste
+        </a>
+    </li>
+    <li class="col_titre">
+        <a href="{{ path('lien_avis_edit', { 'id': entity.id }) }}">
+            Modifier
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

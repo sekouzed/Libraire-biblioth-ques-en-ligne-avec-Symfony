@@ -1,0 +1,62 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Catalogue
+{% endblock %}
+
+
+{% block menu_catalogue %}
+	<a href="{{ path('lien_livre_show_all') }}" class="current">Le catalogue</a>
+{% endblock %} 
+
+{% block recent_projects %}
+	<div class="mode_chercher">
+		<form class="formulaire" action="{{ path('lien_livre_find') }}" method="post"> 
+				<input type="text" name="titre_find" placeholder="nom du livre" value=""/> 
+				<input type="text" name="auteur_find" placeholder="nom de l'auteur" value=""/>
+				<select name="collection_find">
+				    <option value="">Toutes les collections</option>
+	               {% for col in liste_collection %}
+				        <option value="{{ col.id }}">{{ col.nom }}</option>
+	               {% endfor %}
+				</select>  
+				<input type="submit" value="OK" class="button_01"/> 
+			</form> 
+	</div>
+{% endblock %} 
+			
+{% block column_w610 %}
+	<div class="header_01">{{ total_livres }} livres dans le catalogue</div>
+	 
+	{% include 'LsiBiblioBundle::list.html.twig' with {'livres': list_livres} %}
+ 
+	{% if last_page > 1 %}
+	<div class="pagination">
+	<a href="{{ path('lien_livre_show_all', { 'page': 1 }) }}">
+	<img src="{{ asset('bundles/lsibiblio/images/first.png') }}" alt="First page" title="First page" />
+	</a>
+	<a href="{{ path('lien_livre_show_all', { 'page': previous_page }) }}">
+	<img src="{{ asset('bundles/lsibiblio/images/previous.png') }}" alt="Previous page" title="Previous page" />
+	</a>
+	{% for page in 1..last_page %}
+	{% if page == current_page %}
+	{{ page }}
+	{% else %}
+	<a href="{{ path('lien_livre_show_all', { 'page': page }) }}">{{ page }}</a>
+	{% endif %}
+	{% endfor %}
+	<a href="{{ path('lien_livre_show_all', { 'page': next_page }) }}">
+	<img src="{{ asset('bundles/lsibiblio/images/next.png') }}" alt="Next page" title="Next page" />
+	</a>
+	<a href="{{ path('lien_livre_show_all', { 'page': last_page }) }}">
+	<img src="{{ asset('bundles/lsibiblio/images/last.png') }}" alt="Last page" title="Last page" />
+	</a>
+	</div>
+	{% endif %}
+	<div class="pagination_desc">
+	<strong>{{ total_livres }}</strong> livres dans le catalogue
+	{% if last_page > 1 %}
+	- page <strong>{{ current_page }}/{{ last_page }}</strong>
+	{% endif %}
+	</div>
+{% endblock %}

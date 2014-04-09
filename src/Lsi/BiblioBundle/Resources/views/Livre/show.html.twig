@@ -1,0 +1,67 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	{{ entity.titre }}
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Livre</a>
+{% endblock %}
+
+{% block column_w610 -%} 
+	<div class="header_01 col_titre">
+		<a href="{{ path('lien_livre_show', { 'id': entity.id, 'collection': entity.getCollectionSlug, 'auteur': entity.getAuteurSlug, 'titre': entity.getTitreSlug }) }}">
+        {{ entity.titre }}</a>
+	</div> 
+    <table class="record_properties">
+        <tbody> 
+            <tr>
+                <td></td>
+                <td><img src="{{ asset('bundles/lsibiblio/images/thumbnails/' ~ entity.couverture) }}" title="{{ entity.titre }}"/></td>
+            </tr>
+            <tr>
+                <td>Auteur</td>
+                <td>{{ entity.auteur }}</td>
+            </tr>
+            <tr>
+                <td>Edition</td>
+                <td>{{ entity.edition }}</td>
+            </tr>
+            <tr>
+                <td>Date d'edition</td>
+                <td>{{ entity.dateEdition|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <td>Ou acheter ce livre?</td>
+                <td>{{ entity.lienAchat }}</td>
+            </tr>
+            <tr>
+                <td>Nombre de vue</td>
+                <td>{{ entity.nombreDeVue }}</td>
+            </tr> 
+                <td>Ajouter le</td>
+                <td>{{ entity.dateAjout|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <td>Resume</td>
+                <td>{{ entity.resume }}</td>
+            </tr>
+        </tbody>
+    </table>
+<hr />
+	<div class="record_actions col_titre">    
+		<a href="{{ asset('bundles/lsibiblio/swf/' ~ entity.support) }}" target="_blank">
+        Lire ce livre</a> 
+	 </div>
+     <hr />
+<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+<span class='st_googleplus_hcount' displayText='Google +'></span>
+<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+<span class='st_email_hcount' displayText='Email'></span>
+<hr />
+<div class="formulaire">
+    {{ form(avis_form) }}
+</div>
+  
+{% endblock %}

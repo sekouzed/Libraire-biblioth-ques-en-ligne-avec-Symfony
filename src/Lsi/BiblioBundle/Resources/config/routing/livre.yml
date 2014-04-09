@@ -1,0 +1,51 @@
+lien_livre:
+    pattern:  /
+    defaults: { _controller: "LsiBiblioBundle:Livre:index" }
+
+lien_livre_read: 
+    pattern:  read/{collection}/{auteur}/{id}/{titre}
+    defaults: { _controller: "LsiBiblioBundle:Livre:read" }
+    requirements:
+        id: \d+ 
+
+lien_livre_show: 
+    pattern:  /{collection}/{auteur}/{id}/{titre}
+    defaults: { _controller: "LsiBiblioBundle:Livre:show" }
+    requirements:
+        id: \d+ 
+
+lien_livre_all: 
+    pattern:  /liste/{page}
+    defaults: { _controller: LsiBiblioBundle:Livre:all,page:1 }
+
+lien_livre_show_all: 
+    pattern:  /catalogue/{page}
+    defaults: { _controller: LsiBiblioBundle:Livre:showAll,page:1 }
+    
+lien_livre_find: 
+    pattern:  /recherche
+    defaults: { _controller: LsiBiblioBundle:Livre:find }
+    requirements: { _method: post }
+
+lien_livre_new:
+    pattern:  /new
+    defaults: { _controller: "LsiBiblioBundle:Livre:new" }
+
+lien_livre_create:
+    pattern:  /create
+    defaults: { _controller: "LsiBiblioBundle:Livre:create" }
+    requirements: { _method: post }
+
+lien_livre_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LsiBiblioBundle:Livre:edit" }
+
+lien_livre_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LsiBiblioBundle:Livre:update" }
+    requirements: { _method: post|put }
+
+lien_livre_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LsiBiblioBundle:Livre:delete" }
+    requirements: { _method: post|delete }

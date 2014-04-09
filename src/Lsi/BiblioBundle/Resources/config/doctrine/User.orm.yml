@@ -1,0 +1,30 @@
+Lsi\BiblioBundle\Entity\User: 
+    type: entity
+    table: user
+    repositoryClass: Lsi\BiblioBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nomComplet:
+            type: string(45)
+        email:
+            type: string(45)
+        password:
+            type: string(45)
+        age:
+            type: integer(4)
+        role:
+            type: string(45)
+        dateInscription:
+            type: datetime
+        userSuspendu:
+            type: boolean
+            default: true
+    oneToMany: 
+        avis_user_livre:
+            targetEntity: AvisUserLivre
+            mappedBy: user
+    lifecycleCallbacks:
+         prePersist: [ setDateInscriptionValue ]

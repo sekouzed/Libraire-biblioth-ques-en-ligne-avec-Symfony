@@ -1,0 +1,25 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Edition du livre
+{% endblock %}
+
+
+{% block menu_suite %}
+	<a href="" class="current">Utilisateurs</a>
+{% endblock %}  
+
+{% block column_w610 -%} 
+	<div class="header_01">Mise a jours de l'utilisateur</div>  
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('lien_user') }}">
+           Retourn a la liste
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

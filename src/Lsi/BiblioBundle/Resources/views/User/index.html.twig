@@ -1,0 +1,74 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	Edition du livre
+{% endblock %}
+
+
+{% block menu_suite %}
+	<a href="" class="current">Utilisateurs</a>
+{% endblock %}  
+
+{% block column_w610 -%} 
+	<div class="header_01">Liste des utilisateurs</div>  
+
+    <table class="tab_list">
+        <thead>
+            <tr> 
+                <th>Inscription</th>
+                <th>Nom</th> 
+                <th>Mail</th>
+                <th>Age</th>
+                <th>Role</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index) }}"> 
+            <form class="formulaire" action="{{ path('lien_user_modif') }}" method="post">
+                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('Y-m-d H:i:s') }}{% endif %}</td> 
+                <td class="col_titre"><a href="{{ path('lien_user_show', { 'id': entity.id }) }}">{{ entity.nomComplet }}</a></td>
+                <td>{{ entity.email }}</td> 
+                <td>{{ entity.age }}</td>    
+                <td>
+                    <select name="role">
+                        {% if entity.role=='admin' %} 
+                            <option value="user">utilisateur</option>
+                            <option value="admin" selected="selected">administrateur</option>
+                        {% else %}   
+                            <option value="user" selected="selected">utilisateur</option>
+                            <option value="admin">administrateur</option>
+                        {% endif %}   
+                    </select>
+                </td>
+                <td>
+                    <select name="suspendu">
+                        {% if entity.userSuspendu==0 %} 
+                            <option value="1">suspendu</option>
+                            <option value="0" selected="selected">active</option>
+                        {% else %}   
+                            <option value="1" selected="selected">suspendu</option>
+                            <option value="0">active</option>
+                        {% endif %}   
+                    </select>
+                </td>
+                <td>
+                    <input name="id" type="hidden" value="{{ entity.id }}" />
+					<input type="submit" value="Modifier"/> 
+                </td>
+            </form>  
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li class="col_titre">
+            <a href="{{ path('lien_user_new') }}">
+                Creer un nouvel utilisateur
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

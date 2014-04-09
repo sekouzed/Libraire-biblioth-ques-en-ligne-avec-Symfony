@@ -1,0 +1,16 @@
+<table class="tab_list">
+	{% for entity in livres %}
+	<tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+		<td class="col_couverture"> 
+			<img src="{{ asset('bundles/lsibiblio/images/thumbnails/' ~ entity.couverture) }}" title="{{ entity.titre }}"/>
+		</td>
+		<td class="col_titre">
+			<a href="{{ path('lien_livre_show', { 'id': entity.id, 'collection': entity.getCollectionSlug, 'auteur': entity.getAuteurSlug, 'titre': entity.getTitreSlug }) }}">{{ entity.titre }}</a>
+			<div>
+				<p>Auteur:{{ entity.auteur }}, Edition:{{ entity.dateEdition|date('m/d/Y') }} par {{ entity.edition }}</p>
+				<p>{{ entity.resume }}</p>
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+</table>

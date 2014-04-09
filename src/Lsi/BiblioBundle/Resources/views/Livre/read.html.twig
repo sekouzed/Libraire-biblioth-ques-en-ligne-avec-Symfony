@@ -1,0 +1,32 @@
+{% extends 'LsiBiblioBundle::layout.html.twig' %}
+
+{% block title %}
+	{{ entity.titre }}
+{% endblock %}
+
+{% block menu_suite %}
+	<a href="" class="current">Lecture</a>
+{% endblock %}
+
+{% block tempatemo_content_wrapper -%} 
+
+   <!--<object type="application/x-shockwave-flash"data="{{ asset('bundles/lsibiblio/p (7).swf') }}" width="100%" height="1000">
+      <object data="" type="application/pdf" width="100%" height="1000">
+             </object>                       -->
+<object width="595" height="842" style="margin: auto;">
+  <param name="MOVIE" value="{{ asset('bundles/lsibiblio/swf/p7.swf') }}">
+  <param name="PLAY" value="true">
+  <param name="LOOP" value="true">
+  <param name="QUALITY" value="high">
+  <embed src="{{ asset('bundles/lsibiblio/swf/p7.swf') }}" width="595" height="842"
+   play="true" align="" loop="true" quality="high"
+   TYPE="application/x-shockwave-flash"
+   PLUGINSPAGE="[[[http://www.macromedia.com/go/getflashplay]e]r]">
+  </embed>
+</object>
+
+<div class="formulaire">
+    {{ form(avis_form) }}
+</div>
+  
+{% endblock %}
